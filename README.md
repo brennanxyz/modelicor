@@ -1,2 +1,2 @@
-# modelicor
-I microservice for solving Modelica files
+# Modelicor
+A microservice Modelica solver
