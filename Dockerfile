@@ -1,9 +1,21 @@
-FROM python:3.8.5-alpine
-COPY . /app
+FROM python:3.7
+ENV GIT_SSL_NO_VERIFY 1
+
+COPY ./bin/modelica_*.sh /build/
+RUN chmod +x /build/modelica_*.sh
+
+RUN /build/modelica_prepare.sh
+RUN /build/modelica_install.sh
+
+COPY ./requirements.txt /app/
 WORKDIR /app
-RUN apk update
-RUN apk add make automake gcc g++ subversion python3-dev linux-headers
-RUN pip install -r requirements.txt
+RUN mkdir /app/templates
+COPY ./templates/* /app/templates/
+RUN pip3 install -r requirements.txt
+COPY ./main.py /app/
+RUN useradd -ms /bin/bash openmodelica
+USER openmodelica
+ENV USER openmodelica
 ENTRYPOINT ["python"]
 CMD ["main.py"]
 
