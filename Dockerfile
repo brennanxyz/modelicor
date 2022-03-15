@@ -20,4 +20,4 @@ ENV USER openmodelica
 ENTRYPOINT ["python"]
 CMD ["main.py"]
 
-EXPOSE 3030
+EXPOSE 80
