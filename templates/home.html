@@ -5,14 +5,49 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
-    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='template.css') }}">
+    <title>Modelicor</title>
 </head>
 
 <body>
-    <h1>Home Page</h1>
-    <p>Hello World from Flask! Get started by learning more <a href="https://flask.palletsprojects.com/en/1.1.x/">here</a>.</p>
-    <p>API endpoint available at <a href="/api/data">/api</a>.</p>
+  <div class="container">
+    <h1>
+      <span style="color:#cb429f;">M</span><span style="color:#b43c94;">o</span><span style="color:#9e3588;">d</span><span style="color:#892f7b;">e</span><span style="color:#74296e;">l</span><span style="color:#602261;">i</span><span style="color:#4e1b53;">c</span><span style="color:#3c1545;">o</span><span style="color:#2c0e37;">r</span>
+    </h1>
+    <p>Modelicor is an open-source web service that exposes functions of the <a href="https://www.openmodelica.org/" target="_blank">OpenModelica</a> shell and compiler through REST API calls. The code lives <a gref="https://github.com/brennanxyz/modelicor" target="_blank">here</a> on GitHub. The interface accepts the following HTTP requests:</p>
+    <p>
+      <table>
+        <tr>
+          <th>Method</th>
+          <th>URL</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td><a href="/health" target="_blank">/health</a></td>
+          <td>
+            This is a check that the service is up. Should return <br> <code>{ "value": "OK" }</code>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td><a href="/api/health" target="_blank">/api/health</a></td>
+          <td>
+            This is to check that the OpenModelica solver engine is accessible. Should return a health check and the available version of the OpenModelica compiler such as <br><code>{ "value": "OK", "version": "OMCompiler v#.#.#" }</code>
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>/api/solve_file</td>
+          <td>
+            This will consume a Modelica file (.mo) and solve it, returning the solution as JSON data. Attach a valid Modelica file to a <code>multipart/form-data</code> request. It must use the .mo extension.
+          </td>
+        </tr>
+
+      </table>
+    </p>
+    <p>Reach out to <strong>brennan@brennanharris.xyz</strong> for questions.</p>
+  </div>
 </body>
 
 </html>

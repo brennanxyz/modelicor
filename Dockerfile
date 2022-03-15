@@ -7,13 +7,16 @@ RUN chmod +x /build/modelica_*.sh
 RUN /build/modelica_prepare.sh
 RUN /build/modelica_install.sh
 
-COPY ./requirements.txt /app/
 WORKDIR /app
-RUN mkdir /app/templates
-COPY ./templates/* /app/templates/
+COPY ./requirements.txt /app/
 RUN pip3 install -r requirements.txt
 COPY ./main.py /app/
 RUN chmod -R 776 /app/main.py
+
+RUN mkdir /app/templates
+COPY ./templates/* /app/templates/
+RUN mkdir /app/static
+COPY ./static/* /app/static/
 RUN useradd -ms /bin/bash openmodelica
 USER openmodelica
 ENV USER openmodelica

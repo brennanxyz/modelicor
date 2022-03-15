@@ -4,6 +4,6 @@ services:
   web:
     build: .
     ports:
-      - "3030:80"
+      - "3131:3030"
     volumes:
       - ./shared:/app/shared
