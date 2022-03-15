@@ -16,7 +16,7 @@ COPY ./main.py /app/
 RUN useradd -ms /bin/bash openmodelica
 USER openmodelica
 ENV USER openmodelica
-RUN chmod -R 776 /app
+RUN chmod -R 776 main.py
 ENTRYPOINT ["python"]
 CMD ["main.py"]
 
