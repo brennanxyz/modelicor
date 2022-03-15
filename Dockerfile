@@ -13,10 +13,10 @@ RUN mkdir /app/templates
 COPY ./templates/* /app/templates/
 RUN pip3 install -r requirements.txt
 COPY ./main.py /app/
+RUN chmod -R 776 main.py
 RUN useradd -ms /bin/bash openmodelica
 USER openmodelica
 ENV USER openmodelica
-RUN chmod -R 776 main.py
 ENTRYPOINT ["python"]
 CMD ["main.py"]
 
