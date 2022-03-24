@@ -21,3 +21,5 @@ COPY ./templates/home.html /app/templates
 
 ENTRYPOINT ["python3"]
 CMD ["main.py"]
+
+EXPOSE 80
