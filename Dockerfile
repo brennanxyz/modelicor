@@ -1,26 +1,23 @@
-FROM python:3.7
-ENV GIT_SSL_NO_VERIFY 1
+FROM openmodelica/openmodelica:v1.18.0-ompython
 
-COPY ./bin/modelica_*.sh /build/
-RUN chmod +x /build/modelica_*.sh
+RUN pip3 install Flask scipy
+RUN pip3 install DyMat
+COPY ./bin/setup_modelica.py /usr/bin/
+RUN mkdir /app/
+RUN mkdir /app/static/
+RUN mkdir /app/templates/
 
-RUN /build/modelica_prepare.sh
-RUN /build/modelica_install.sh
+RUN useradd -ms /bin/bash openmodelica
+RUN chown openmodelica /usr/bin/omc
+USER openmodelica
+RUN chmod 4755 /usr/bin/omc
+ENV USER openmodelica
+RUN python3 /usr/bin/setup_modelica.py
 
 WORKDIR /app
-COPY ./requirements.txt /app/
-RUN pip3 install -r requirements.txt
 COPY ./main.py /app/
-RUN chmod -R 776 /app/main.py
+COPY ./static/template.css /app/static/
+COPY ./templates/home.html /app/templates
 
-RUN mkdir /app/templates
-COPY ./templates/* /app/templates/
-RUN mkdir /app/static
-COPY ./static/* /app/static/
-RUN useradd -ms /bin/bash openmodelica
-USER openmodelica
-ENV USER openmodelica
-ENTRYPOINT ["python"]
+ENTRYPOINT ["python3"]
 CMD ["main.py"]
-
-EXPOSE 80

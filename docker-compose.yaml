@@ -5,5 +5,3 @@ services:
     build: .
     ports:
       - "3131:3030"
-    volumes:
-      - ./shared:/app/shared

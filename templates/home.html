@@ -14,7 +14,7 @@
     <h1>
       <span style="color:#cb429f;">M</span><span style="color:#b43c94;">o</span><span style="color:#9e3588;">d</span><span style="color:#892f7b;">e</span><span style="color:#74296e;">l</span><span style="color:#602261;">i</span><span style="color:#4e1b53;">c</span><span style="color:#3c1545;">o</span><span style="color:#2c0e37;">r</span>
     </h1>
-    <p>Modelicor is an open-source web service that exposes functions of the <a href="https://www.openmodelica.org/" target="_blank">OpenModelica</a> shell and compiler through REST API calls. The code lives <a gref="https://github.com/brennanxyz/modelicor" target="_blank">here</a> on GitHub. The interface accepts the following HTTP requests:</p>
+    <p>Modelicor is an open-source web service that exposes functions of the <a href="https://www.openmodelica.org/" target="_blank">OpenModelica</a> shell and compiler through REST API calls. The code lives <a g\href="https://github.com/brennanxyz/modelicor" target="_blank">here</a> on GitHub. The interface accepts the following HTTP requests:</p>
     <p>
       <table>
         <tr>
@@ -40,7 +40,15 @@
           <td>POST</td>
           <td>/api/solve_file</td>
           <td>
-            This will consume a Modelica file (.mo) and solve it, returning the solution as JSON data. Attach a valid Modelica file to a <code>multipart/form-data</code> request. It must use the .mo extension.
+            This will consume a Modelica file (.mo) and solve it, returning the solution as JSON data. Attach a valid Modelica file to a <code>multipart/form-data</code> request. It must use the .mo extension.<br><br>
+            The following keys must be present in the form data:<br><br>
+            <code>
+              file<br>
+              model_name<br>
+              start_time<br>
+              stop_time<br>
+              interval_count
+            </code>
           </td>
         </tr>
 
