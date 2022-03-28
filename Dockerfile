@@ -9,7 +9,6 @@ RUN mkdir /app/templates/
 
 RUN useradd -ms /bin/bash openmodelica
 RUN chown openmodelica /usr/bin/omc
-RUN chown openmodelica -R /usr/local/lib/python3.8
 USER openmodelica
 RUN chmod 4755 /usr/bin/omc
 ENV USER openmodelica
