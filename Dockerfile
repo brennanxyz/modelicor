@@ -1,6 +1,6 @@
 FROM openmodelica/openmodelica:v1.18.0-ompython
 
-RUN pip3 install Flask scipy
+RUN pip3 install Flask scipy flask-cors
 RUN pip3 install DyMat
 COPY ./bin/setup_modelica.py /usr/bin/
 RUN mkdir /app/

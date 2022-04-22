@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template, send_file
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import tempfile
 import os
@@ -7,6 +8,7 @@ import json
 import DyMat
 from OMPython import OMCSessionZMQ
 app = Flask(__name__)
+cors = CORS(app)
 
 omc = OMCSessionZMQ()
 omc.sendExpression("installPackage(Modelica)")
